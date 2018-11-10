@@ -1,0 +1,31 @@
+{
+  "charID" : 1,
+  "playerID" : 1,
+  "name" : "Gluntmoxxle the Reasonably Divine",
+  "race" : "tiefling",
+  "subrace" : null,
+  "alignment" : "chaotic neutral",
+  "background" : "haunted",
+  "inspiration" : true,  
+  "backgroundDetails" : "I am haunted by a dark star.  It watches me.  I dunna like it... NOOO!!",
+  "attributes" : {
+    "strength" : 12,
+    "dexterity" : 16,
+    "constitution" : 12,
+    "intelligence" : 16,
+    "wisdom" : 8,
+    "charisma" : 20
+  },
+  "classes" : [
+    {
+      "class" : "divine soul",
+      "level" : 8,
+      "hitDice" : "d6"
+    }
+  ],
+  "hitPoints" : {
+    "max" : 50,
+    "current" : 50,
+    "temp" : 0
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "charID" : 1,
+  "coins" : {
+    "cp" : 0,
+    "sp" : 20,
+    "ep" : 0,
+    "gp" : 800,
+    "pp" : 0
+  },
+  "gear" : [
+    {
+      "storeID" : 0,
+      "name" : "Smoking Twig of Death",
+      "desc" : "A smoking twig that wants to kill me, but might be able to raise twig warriors"
+    }
+  ]
+}
