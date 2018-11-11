@@ -8,6 +8,7 @@
 // Require statements
 const Joi = require("joi");
 const CharacterGETHandler = require("./characterGETHandler");
+const CharacterPOSTHandler = require("./characterPOSTHandler");
 
 // Class constants
 
@@ -27,7 +28,7 @@ class CharacterServiceHandler {
   }
 
   newCharacter(req, res) {
-    global.logger.log("newCharacter() called on CharacterServiceHandler");
+    new CharacterPOSTHandler(this.db).postCharacter(req, res);
   }
 
   deleteCharacter(req, res) {

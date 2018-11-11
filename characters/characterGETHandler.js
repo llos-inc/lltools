@@ -5,17 +5,8 @@
 // Require statements
 const mongoose = require("mongoose");
 
-// Class constants
-
-// Character schema 
-const characterSchema = new mongoose.Schema({
-  charID : Number,
-  playerID : Number,
-  name : String
-});
-
-// Character model
-const Character = mongoose.model("Character", characterSchema);
+// Character model.  The db schema is defined in DBModule
+const Character = mongoose.model("Character");
 
 // Class definition
 class CharacterGETHandler {
@@ -25,8 +16,9 @@ class CharacterGETHandler {
     this.searchCriteria = {};
   }
 
+
   // Converts the criteria passed in on the params or body into a mongoose DB query object.
-  // @param req {Request} request object sent in from express
+  // @param res {Express.Response} response object from the express API call
   parseSearchCriteria(req) {
     if (!req.params.charID) {
       this.searchCriteria = req.query;
@@ -36,7 +28,11 @@ class CharacterGETHandler {
     }
   }
 
-  async dbFetch(res) {
+
+  // Asynchronously queries the mongo DB via the character model and then sends results back.
+  //   Will send back status 404 -- not found, if nothing is returned.  
+  // @param res {Express.Response} response object from the express API call
+  async dbGet(res) {
     try {
       const characters = await Character
         .find(this.searchCriteria);
@@ -50,18 +46,20 @@ class CharacterGETHandler {
     }
   }
   
+
+  // Calls the search criteria parser and the DB fetch method
+  // @param req {Express.Request} request object from the express API call
+  // @param res {Express.Response} response object from the express API call
   getCharacter(req, res) {
-    global.logger.log("getCharacter() called on CharacterGETHandler with" + 
-                      "\n  Params: " + JSON.stringify(req.params) + 
-                      "\n  Body: " + JSON.stringify(req.body));
     this.parseSearchCriteria(req);
     global.logger.log("getCharacter() is using search criteria: " + 
                       JSON.stringify(this.searchCriteria));
 
     // Asynchronously fetch the data and send it back via response object.
-    this.dbFetch(res);
+    this.dbGet(res);
   }
 
 }
 
+// Exports the CharacterGETHandler class
 module.exports = CharacterGETHandler;
