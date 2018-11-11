@@ -1,12 +1,13 @@
 {
   "charID" : 1,
   "playerID" : 1,
+  "inspiration" : true, 
   "name" : "Gluntmoxxle the Reasonably Divine",
+  "sex" : "male",
   "race" : "tiefling",
   "subrace" : null,
   "alignment" : "chaotic neutral",
-  "background" : "haunted",
-  "inspiration" : true,  
+  "background" : "haunted", 
   "backgroundDetails" : "I am haunted by a dark star.  It watches me.  I dunna like it... NOOO!!",
   "attributes" : {
     "strength" : 12,
