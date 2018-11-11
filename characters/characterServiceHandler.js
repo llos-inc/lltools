@@ -19,8 +19,7 @@ class CharacterServiceHandler {
   }
   
   getCharacter(req, res) {
-    const charData = new CharacterGETHandler(this.db).getCharacter(req, res);
-    res.send(charData);
+    new CharacterGETHandler(this.db).getCharacter(req, res);
   }
 
   updateCharacter(req, res) {
