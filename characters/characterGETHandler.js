@@ -20,11 +20,11 @@ class CharacterGETHandler {
   // Converts the criteria passed in on the params or body into a mongoose DB query object.
   // @param res {Express.Response} response object from the express API call
   parseSearchCriteria(req) {
-    if (!req.params.charID) {
+    if (!req.params._id) {
       this.searchCriteria = req.query;
     }
     else {
-      this.searchCriteria = {"charID" : req.params.charID};
+      this.searchCriteria = { "_id": req.params._id };
     }
   }
 
@@ -45,15 +45,15 @@ class CharacterGETHandler {
       res.sendStatus(404, err);
     }
   }
-  
+
 
   // Calls the search criteria parser and the DB fetch method
   // @param req {Express.Request} request object from the express API call
   // @param res {Express.Response} response object from the express API call
   getCharacter(req, res) {
     this.parseSearchCriteria(req);
-    global.logger.log("getCharacter() is using search criteria: " + 
-                      JSON.stringify(this.searchCriteria));
+    global.logger.log("getCharacter() is using search criteria: " +
+      JSON.stringify(this.searchCriteria));
 
     // Asynchronously fetch the data and send it back via response object.
     this.dbGet(res);
