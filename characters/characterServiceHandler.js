@@ -1,16 +1,14 @@
 /*
 ** CharacterServiceHandler.js
 **   This will instantiate a handler object based on the route (CharacterGETHandler, et al)
-**   and send the results of that object back to the response object.  It will also do input
-**   validation via JOI for new/update.
+**   and send the results of that object back to the response object.  
 */
 
 // Require statements
-const Joi = require("joi");
 const CharacterGETHandler = require("./characterGETHandler");
 const CharacterPOSTHandler = require("./characterPOSTHandler");
-
-// Class constants
+const CharacterPUTHandler = require("./characterPUTHandler");
+const CharacterDELETEHandler = require("./characterDELETEHandler");
 
 // Class definition
 class CharacterServiceHandler {
@@ -18,13 +16,13 @@ class CharacterServiceHandler {
   constructor(db) {
     this.db = db;
   }
-  
+
   getCharacter(req, res) {
     new CharacterGETHandler(this.db).getCharacter(req, res);
   }
 
   updateCharacter(req, res) {
-    global.logger.log("updateCharacter() called on CharacterServiceHandler");
+    new CharacterPUTHandler(this.db).putCharacter(req, res);
   }
 
   newCharacter(req, res) {
@@ -32,7 +30,7 @@ class CharacterServiceHandler {
   }
 
   deleteCharacter(req, res) {
-    global.logger.log("deleteCharacter() called on CharacterServiceHandler");
+    new CharacterDELETEHandler(this.db).deleteCharacter(req, res);
   }
 }
 
